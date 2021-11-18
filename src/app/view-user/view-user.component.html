@@ -1,0 +1,84 @@
+<nav class="navbar navbar-brand bg-secondary">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">Angular User Management</h1>
+
+    </div>
+</nav>
+<section>
+    <table class="table table-dark mt-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">User Name </th>
+                <th scope="col">Gender</th>
+                <th scope="col">Aadhar</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Address</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let a of UserData">
+                <td>{{a.id}}</td>
+                <td>{{a.name}}</td>
+                <td>{{a.gender}}</td>
+                <td>{{a.aadhar}}</td>
+                <td>{{a.phone}}</td>
+                <td>{{a.address}}</td>
+                <td>
+                    <button (click)="onEdit(a)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                    <button (click)="deleteUser(a)" class="btn btn-danger mx-3">Delete</button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formVal">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">User Name</label>
+                        <input type="text" formControlName="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Gender</label>
+                        <select formControlName="gender" class="form-select" aria-label="Default select example">
+                            <option selected value="male">Male</option>
+                            <option value="female">Female</option>
+                            
+                          </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Aadhar</label>
+                        <input type="number" formControlName="aadhar" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Phone Number</label>
+
+                        <input type="number" formControlName="phone" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Address</label>
+                        <input type="text" class="form-control" formControlName="address" id="exampleInputPassword1">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" (click)="updateUserDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
